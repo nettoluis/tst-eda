@@ -1,6 +1,6 @@
 import java.util.*;
 
-class TopN {
+class DownN {
     public static int[] mergeSort(int[] a) {
         if (a.length <= 1) {
             return a;
@@ -60,7 +60,7 @@ class TopN {
             numeros = mergeSort(numeros);
 
             String saida = "";
-                for (int i = numeros.length-1; i > numeros.length-1-n; i--) {
+                for (int i = 0; i < n; i++) {
                 saida += saida.equals("") ? numeros[i] : " " + numeros[i];
             }
 
