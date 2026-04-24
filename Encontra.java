@@ -1,6 +1,16 @@
 import java.util.*;
 
 class Encontra {
+    public static String encontraPrimeiroNegativoRecursivo(int[] n, int i) {
+        if (i == n.length) {
+            return "-";
+        }
+        if (n[i] < 0) {
+            return Integer.toString(n[i]);
+        }
+
+        return encontraPrimeiroNegativoRecursivo(n, i+1);
+    }
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
             String[] sequencia = sc.nextLine().split(" ");
@@ -11,13 +21,7 @@ class Encontra {
                  numeros[i] = Integer.parseInt(sequencia[i]);
             }
 
-            String saida = "-";
-            for (int numero : numeros) {
-                if (numero < 0) {
-                   saida = Integer.toString(numero); 
-                   break;
-                }
-            }
+            String saida = encontraPrimeiroNegativoRecursivo(numeros, 0);
 
             System.out.println(saida);
         }
