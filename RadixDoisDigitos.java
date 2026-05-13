@@ -1,0 +1,49 @@
+import java.util.*;
+
+class RadixDoisDigitos {
+    public static int[] countingSort(int[] a, int d) {
+        int[] c = new int[100];
+        int[] b = new int[a.length];
+        int operando = (int) Math.pow(10, d);
+
+        //freq
+        for (int i = 0; i < a.length; i++) {
+            c[(a[i] % operando) / (operando / 100)] += 1;
+        } 
+
+        //cumulative
+        for (int i = 1; i < c.length; i++) {
+            c[i] += c[i-1];
+        }
+        
+        //sort
+        for (int i = a.length-1; i >= 0; i--) {
+            b[--c[(a[i] % operando) / (operando / 100)]] = a[i];
+        }
+
+        return b;
+    }
+
+    public static void radixDoisDigitos(int[] v, int d) {
+        for (int i = 2; i <= d; i += 2) {
+            v = countingSort(v, i);
+            System.out.println(Arrays.toString(v));
+        }
+
+
+    }
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+            String[] s = sc.nextLine().split(" ");
+
+            int[] n = new int[s.length];
+            int d = Integer.parseInt(sc.nextLine());
+
+            for (int i = 0; i < n.length; i++) {
+                n[i] = Integer.parseInt(s[i]);
+            }
+
+            radixDoisDigitos(n, d);
+        }
+    }
+}
